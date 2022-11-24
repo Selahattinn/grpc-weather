@@ -1,0 +1,30 @@
+syntax="proto3";
+
+option go_package= "weather/api" ;
+
+service WeatherService {
+  rpc QueryWeather (WeatherRequest) returns (stream WeatherResponse);
+  rpc ListCities (ListCitiesRequest) returns (ListCitiesResponse);
+}
+
+message WeatherRequest {
+  int64 cityCode = 1;
+}
+
+message WeatherResponse {
+  float temperature = 1;
+  string Message = 2;
+}
+
+message ListCitiesRequest {
+
+}
+
+message ListCitiesResponse {
+  repeated City items = 1;
+}
+
+message City {
+  int64 code = 1;
+  string name = 2;
+}
